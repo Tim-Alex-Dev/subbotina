@@ -6,4 +6,9 @@ Thumbs.db
 dist
 vendor
 .npm
-.claude/
+# .claude/ stays local, except the files cloud sessions need (no-Claude-attribution setting + git authorship rule)
+.claude/*
+!.claude/settings.json
+!.claude/rules/
+.claude/rules/*
+!.claude/rules/git.md
