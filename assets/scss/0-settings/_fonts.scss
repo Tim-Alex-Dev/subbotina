@@ -1,1 +1,42 @@
 // Project fonts: @font-face rules (woff2 + woff from assets/fonts/, font-display: swap).
+// Character set: Latin + Latin Extended (English, Danish) and Cyrillic (Ukrainian). Licenses: assets/fonts/licenses/.
+// All weights are registered for now: a browser downloads only the files the CSS really uses.
+// TODO: once the UI kit is final, delete the weights nobody uses (files + entries below).
+
+// family name => (weight => file name without extension)
+$font-faces: (
+		'Cormorant Garamond': ( // headings: Light for big titles, Regular for minor / mixed-case titles
+				300: 'CormorantGaramond-Light',
+				400: 'CormorantGaramond-Regular',
+				500: 'CormorantGaramond-Medium',
+				600: 'CormorantGaramond-SemiBold',
+				700: 'CormorantGaramond-Bold',
+		),
+		'Fixel Text': ( // regular text
+				100: 'FixelText-Thin',
+				200: 'FixelText-ExtraLight',
+				300: 'FixelText-Light',
+				400: 'FixelText-Regular',
+				500: 'FixelText-Medium',
+				600: 'FixelText-SemiBold',
+				700: 'FixelText-Bold',
+				800: 'FixelText-ExtraBold',
+				900: 'FixelText-Black',
+		),
+		'Forum': ( // accent font (single weight)
+				400: 'Forum-Regular',
+		),
+);
+
+@each $family, $weights in $font-faces {
+	@each $weight, $file in $weights {
+		@font-face {
+			font-family: $family;
+			src: url('../fonts/#{$file}.woff2') format('woff2'),
+			url('../fonts/#{$file}.woff') format('woff');
+			font-weight: $weight;
+			font-style: normal;
+			font-display: swap;
+		}
+	}
+}
