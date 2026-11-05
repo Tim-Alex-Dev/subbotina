@@ -1,0 +1,188 @@
+// Custom admin styles (ACF / ACF Extended). The theme settings are not loaded here, only the system colors.
+@import "0-settings/!system-colors";
+
+// ACF flexible content
+.acf-flexible-content {
+	.layout {
+		border: 2px solid var(--wp-admin-theme-color, #{$system-color});
+	}
+}
+
+.acf-field-flexible-content {
+	&:before {
+		display: none !important;
+	}
+
+	> .acf-label {
+		width: 100% !important;
+		float: none !important;
+		margin-bottom: 7px !important;
+	}
+
+	> .acf-input {
+		width: 100% !important;
+	}
+}
+
+.acf-fc-layout-handle {
+	background: var(--wp-admin-theme-color, #{$system-color});
+	color: #fff !important;
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.acf-flexible-content
+.layout
+.acf-fc-layout-controls
+.acf-icon.-collapse:hover {
+	color: #fff;
+	background: var(--wp-admin-theme-color-darker-10, #{$system-color-hover});
+}
+
+.acf-field.acf-accordion {
+	border: 2px solid var(--wp-admin-theme-color, #{$system-color});
+	margin-top: 3px;
+
+	.acf-label.acf-accordion-title {
+		background: var(--wp-admin-theme-color, #{$system-color});
+		color: #fff;
+		font-size: 1.2rem;
+		font-weight: 600;
+	}
+}
+
+// ACF Extended
+.acfe-modal.-open.-full > .acfe-modal-wrapper {
+	max-width: 1100px;
+}
+
+.acfe-flexible-stylised-button {
+	.acf-actions {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.acf-button {
+		background: var(--wp-admin-theme-color, #{$system-color});
+		color: #fff;
+		border: 3px solid var(--wp-admin-theme-color, #{$system-color});
+		padding: 4px 80px;
+		font-weight: 700;
+		transition: background-color 0.2s, border-color 0.2s;
+
+		&:hover,
+		&:active,
+		&:focus {
+			background: var(--wp-admin-theme-color-darker-10, #{$system-color-hover});
+			color: #fff;
+			border-color: var(--wp-admin-theme-color-darker-10, #{$system-color-hover});
+		}
+	}
+}
+
+// hide ACFE 'Thumbnail' upload button as we are loading this image into theme
+.acf-field-image[data-name="acfe_flexible_thumbnail"],
+.acfe-flexible-field-setting[data-name="acfe_flexible_thumbnail_label"] {
+	display: none;
+}
+
+// ACFE columns: a column whose fields are all hidden (conditional logic) takes no space, so the next column moves into its place
+// (e.g. a "media only" content block: the media column takes the first half, like the text column in "text only")
+.acf-fields.acfe-column-wrapper > .acf-field-acfe-column:not([data-endpoint="1"]):not(:has(> .acf-input > .acf-fields > .acf-field:not(.acf-hidden))) {
+	display: none;
+}
+
+// ACF on the editing screens (posts, pages, options pages; not ACF's own Field Groups pages = .acf-admin-page): ACF hard-codes
+// its own blue, this recolors it with the admin color scheme (--wp-admin-theme-color, see admin-colors.scss). Colors only.
+// "html" = one more element than ACF's own selectors: these win whatever order the stylesheets load in.
+$acf-accent: var(--wp-admin-theme-color, #{$system-color});
+$acf-accent-dark: var(--wp-admin-theme-color-darker-10, #{$system-color-hover});
+
+html body:not(.acf-admin-page) {
+	.acf-button-group label.selected {
+		border-color: $acf-accent-dark;
+		background: $acf-accent;
+	}
+
+	.acf-switch.-on {
+		border-color: $acf-accent-dark;
+		background: $acf-accent;
+	}
+
+	.acf-switch .acf-switch-on {
+		text-shadow: none;
+	}
+
+	.acf-switch:hover,
+	.acf-switch.-focus {
+		border-color: $acf-accent;
+		color: $acf-accent-dark;
+	}
+
+	.acf-tab-wrap.-left .acf-tab-group li a {
+		color: $acf-accent;
+
+		&:hover {
+			color: $acf-accent-dark;
+		}
+	}
+
+	.acf-field .acf-notice {
+		color: $acf-accent-dark;
+	}
+
+	.acf-image-uploader .image-wrap:focus,
+	.acf-image-uploader .image-wrap.show-if-value .acf-actions.-hover a:focus,
+	.acf-file-uploader .file-wrap:focus,
+	.acf-file-uploader.has-value .acf-actions.-hover a:focus {
+		outline-color: $acf-accent;
+	}
+
+	ul.acf-radio-list:focus-visible,
+	ul.acf-checkbox-list:focus-visible {
+		border-color: $acf-accent;
+	}
+
+	.select2-container.-acf .select2-selection--multiple .select2-selection__choice.ui-sortable-helper {
+		border-color: $acf-accent-dark;
+		background: $acf-accent;
+	}
+
+	.acf-flexible-content .layout.active-layout > .acf-fc-layout-actions-wrap,
+	.acf-flexible-content .layout.active-layout > .acf-fc-layout-actions-wrap .acf-fc-layout-draggable-icon::before {
+		background: $acf-accent;
+	}
+
+	.acf-flexible-content > .acf-actions.acf-fc-top-actions .acf-btn-clear {
+		color: $acf-accent !important; // ACF sets it with !important
+	}
+
+	.acf-fc-popup a:hover {
+		color: $acf-accent;
+	}
+
+	.acf-fc-popup.acf-more-layout-actions li a:hover::before {
+		background: $acf-accent;
+	}
+
+	.acf-more-layout-actions li a:focus {
+		box-shadow: 0 0 0 2px $acf-accent;
+	}
+
+	.acf-gallery .acf-gallery-attachment.active .margin {
+		box-shadow: 0 0 0 1px #fff, 0 0 0 5px $acf-accent;
+	}
+
+	.acf-media-modal .attachment.acf-selected {
+		box-shadow: 0 0 0 3px #fff inset, 0 0 0 7px $acf-accent inset !important; // ACF sets it with !important
+	}
+
+	.acf-btn {
+		background-color: $acf-accent;
+
+		&:hover {
+			background-color: $acf-accent-dark;
+		}
+	}
+}

@@ -1,0 +1,29 @@
+// wp-admin color scheme "Theme" in the project colors (registered in inc/admin-colors.php, used for every user):
+// built from WordPress core's own scheme module (wp-admin/css/colors/_admin.scss, like the core schemes in
+// wp-admin/css/colors/*/colors.scss), so every place that is blue in the default scheme gets the project color.
+// HEX values = the palette in 0-settings/_!variables.scss (a configured @use cannot load the ITCSS settings first):
+// keep them equal to the palette when it changes (also the swatches in inc/admin-colors.php).
+// #1e1e1e = menu (neutral dark; per project the darkest palette grey), #df0000 = $primary, #fff = $white.
+// Needs WordPress core next to the theme at build time (themes/{theme}/assets/scss -> ../../../../../wp-admin).
+@use "sass:color";
+@use "../../../../../wp-admin/css/colors/admin" with (
+	$scheme-name: "theme",
+	$base-color: #1e1e1e,
+	$highlight-color: #df0000,
+	$notification-color: #fff,
+	$link: #df0000,
+	$menu-highlight-text: #fff,
+	$menu-highlight-icon: #fff,
+	$menu-bubble-text: #1e1e1e,
+	$menu-submenu-focus-text: #fff,
+);
+
+// the block / component accent color of the scheme (core sets it per scheme in base-styles/admin-schemes.css)
+$theme-color: #df0000;
+
+body.admin-color-theme {
+	--wp-admin-theme-color: #{$theme-color};
+	--wp-admin-theme-color--rgb: #{color.channel($theme-color, "red")}, #{color.channel($theme-color, "green")}, #{color.channel($theme-color, "blue")};
+	--wp-admin-theme-color-darker-10: #{color.adjust($theme-color, $lightness: -5%)};
+	--wp-admin-theme-color-darker-20: #{color.adjust($theme-color, $lightness: -10%)};
+}
