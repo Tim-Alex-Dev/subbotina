@@ -56,7 +56,7 @@ Logins, passwords and license keys are never stored in the repository: ask the p
 2. Create the site: WordPress in a new site folder, an empty database (charset above), `wp-config.php` with the local
    constants above. Or get a database dump + `wp-content/uploads/` from the project lead and import them.
 3. Clone the theme: `git clone https://github.com/Tim-Alex-Dev/subbotina.git wp-content/themes/subbotina`, then `git checkout develop` (the base branch; `master` is the default).
-   `.claude/` (rules, add-ons, tests, project profile) is not in git: copy it from the starter or from the project lead.
+   `.claude/` (rules, add-ons, tests, project profile) is not in git, except `settings.json` and `rules/git.md`: copy the rest from the starter or from the project lead.
 4. Install and activate the required plugins (ACF Pro license key from the project lead), activate the theme.
 5. In the theme folder: `npm i`, then `gulp` (watcher) or `gulp watch` (+ BrowserSync on `devUrl`). Before a deploy: `gulp prod`.
 6. ACF field groups load from `acf-json/`. If WP admin shows "Sync available" (ACF > Field Groups), sync them.
@@ -200,17 +200,17 @@ assets/
   scss/         see SCSS
 ```
 
-### `.claude/` (local only: never built, deployed or committed, in `.gitignore`)
+### `.claude/` (local only: never built or deployed; in `.gitignore` except `settings.json` and `rules/git.md`, which cloud sessions need)
 
 | Path | Purpose |
 | --- | --- |
 | `CLAUDE.md` | Main rules of the theme (stack, hard rules, commands) |
-| `rules/*.md` | Detailed rules per area: `php`, `scss`, `js`, `acf-builder`, `images`, `fonts` |
+| `rules/*.md` | Detailed rules per area: `php`, `scss`, `js`, `acf-builder`, `images`, `fonts`, `git` (authorship: Tim Alex only, committed) |
 | `optional-features.md` | Checklist for a new project: features to remove or add |
 | `addons/` | Code for optional plugins, added per project (see add-ons) |
 | `tests/` | Unit tests (`run.sh`) |
 | `agents/`, `skills/` | Project subagents and skills (empty in the starter) |
-| `settings.json` | Claude Code permissions: no edits in `dist/`, `acf-json/`, `package-lock.json` |
+| `settings.json` | Claude Code settings (committed): no Claude attribution in commits/PRs, no edits in `dist/`, `acf-json/`, `package-lock.json` |
 
 ## Page Builder modules
 
